@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入数据库连接属性文件设置属性
+    <properties resource="resources/properties/db.properties"/>-->
+    <!--设置属性:驱动、数据库连接、用户名、密码-->
+    <properties>
+        <property name="db.driver" value="com.mysql.jdbc.Driver"/>
+        <property name="db.url" value="jdbc:mysql://127.0.0.1:3306/mybatis_demo?characterEncoding=utf-8"/>
+        <property name="db.username" value="root"/>
+        <property name="db.password" value="WU830118"/>
+
+    </properties>
+    <!--设置缓存、延迟加载、级联、自动映射相关信息-->
+    <settings>
+        <!--是否开启缓存，默认true-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--是否开启延迟加载，默认false-->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <!--延迟加载属性对象是否按需加载（true:属性全部加载,false:按需加载）-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--自动映射
+            NONE:不进行自动映射
+            PARTIAL:只会自动映射（不包含复杂结果集）
+            FULL:自动映射任意复杂结果集
+        -->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <!--设置默认执行器
+            SIMPLE:普通执行器
+            REUSE:预处理语句执行器
+            BATCH:批量更新执行器
+        -->
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <!--是否对属性开启驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+    </settings>
+    <!--设置类型别名-->
+    <typeAliases>
+        <!--详细设置类型别名 alias:别名，type:类完全限定名-->
+        <typeAlias alias="" type=""/>
+        <!--通过扫描包的方式，包下类首字母小写进行重命名，有重名类需要使用alias注解-->
+        <package name=""/>
+    </typeAliases>
+    <!--设置类型转换器（特殊转化规则时使用，如枚举）-->
+    <typeHandlers></typeHandlers>
+    <!--设置对象工厂-->
+    <objectFactory type=""></objectFactory>
+    <!--配置插件相关信息（分页）-->
+    <plugins>
+        <plugin interceptor=""></plugin>
+    </plugins>
+    <!---配置运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--事务管理类型(JDBC、MANAGED)-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--数据源配置
+                UNPOOLED:非连接池方式管理
+                POOLED:连接池方式管理
+                JNDI:根据JNDI信息拿到外部容器实现的数据库连接对象
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--配置数据库厂商标识-->
+    <databaseIdProvider type=""></databaseIdProvider>
+    <!--配置映射器相关信息-->
+    <mappers></mappers>
+</configuration>
